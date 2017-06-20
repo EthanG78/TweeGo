@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/ChimeraCoder/anaconda"
 	"github.com/sirupsen/logrus"
+	"github.com/EthanG78/tweego/logger"
 
 	"net/url"
 	"os"
@@ -20,10 +21,8 @@ func main() {
 	anaconda.SetConsumerSecret(consumerSecret)
 	api := anaconda.NewTwitterApi(accessToken, accessTokenSecret)
 
-	/*res,_ := api.GetSearch("golang", nil)
-	for _, tweet := range res.Statuses{
-		fmt.Print(tweet.Text)
-	}*/
+	log := &logger.Newlogger{logrus.New()}
+	api.SetLogger(log)
 
 	s := api.PublicStreamFilter(url.Values{
 		"track":[]string{"#trump"},
