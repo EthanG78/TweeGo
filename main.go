@@ -10,11 +10,19 @@ import (
 )
 
 var(
-	consumerKey = os.Getenv("TWITTER_CONSUMER_KEY")
-	consumerSecret = os.Getenv("TWITTER_CONSUMER_SECRET")
-	accessToken = os.Getenv("TWITTER_ACCESS_TOKEN")
-	accessTokenSecret = os.Getenv("TWITTER_ACCESS_TOKEN_SECRET")
+	consumerKey = getenv("TWITTER_CONSUMER_KEY")
+	consumerSecret = getenv("TWITTER_CONSUMER_SECRET")
+	accessToken = getenv("TWITTER_ACCESS_TOKEN")
+	accessTokenSecret = getenv("TWITTER_ACCESS_TOKEN_SECRET")
 )
+
+func getenv (name string) string{
+	env := os.Getenv(name)
+	if env == ""{
+		panic("Missing environment variable " + env)
+	}
+	return env
+}
 
 func main() {
 	anaconda.SetConsumerKey(consumerKey)
@@ -33,7 +41,7 @@ func main() {
 	for v := range s.C{
 		tweet, ok := v.(anaconda.Tweet)
 		if !ok{
-			logrus.Warningf("Received unexpected value of %T", v)
+			log.Warningf("Received unexpected value of %T", v)
 			continue
 		}
 
@@ -43,11 +51,11 @@ func main() {
 		_, err := api.Retweet(tweet.Id, false)
 
 		if err != nil{
-			logrus.Errorf("Could not retweet %d: %v",tweet.Id, err)
+			log.Errorf("Could not retweet %d: %v",tweet.Id, err)
 			continue
 		}
 
-		logrus.Infof("Retweeted %d", tweet.Id)
+		log.Infof("Retweeted %d", tweet.Id)
 	}
 
 }
