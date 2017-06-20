@@ -5,9 +5,15 @@ import (
 	"github.com/sirupsen/logrus"
 
 	"net/url"
+	"os"
 )
 
-
+var(
+	consumerKey = os.Getenv("TWITTER_CONSUMER_KEY")
+	consumerSecret = os.Getenv("TWITTER_CONSUMER_SECRET")
+	accessToken = os.Getenv("TWITTER_ACCESS_TOKEN")
+	accessTokenSecret = os.Getenv("TWITTER_ACCESS_TOKEN_SECRET")
+)
 
 func main() {
 	anaconda.SetConsumerKey(consumerKey)
