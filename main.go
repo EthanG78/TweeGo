@@ -4,6 +4,7 @@ import (
 	"github.com/ChimeraCoder/anaconda"
 	"github.com/sirupsen/logrus"
 	"github.com/EthanG78/tweego/logger"
+	"github.com/EthanG78/tweego/stream"
 
 	"net/url"
 	"os"
@@ -19,7 +20,7 @@ var(
 func getenv (name string) string{
 	env := os.Getenv(name)
 	if env == ""{
-		panic("Missing environment variable " + env)
+		panic("Missing environment variable " + name)
 	}
 	return env
 }
@@ -33,29 +34,12 @@ func main() {
 	api.SetLogger(log)
 
 	s := api.PublicStreamFilter(url.Values{
-		"track":[]string{"#trump"},
+		"track":[]string{"#trump"}, //PLACEHOLDER
 	})
 
 	defer s.Stop()
 
-	for v := range s.C{
-		tweet, ok := v.(anaconda.Tweet)
-		if !ok{
-			log.Warningf("Received unexpected value of %T", v)
-			continue
-		}
+	stream.StreamRetweet(s , api)
 
-		if tweet.RetweetedStatus != nil {
-			continue
-		}
-		_, err := api.Retweet(tweet.Id, false)
-
-		if err != nil{
-			log.Errorf("Could not retweet %d: %v",tweet.Id, err)
-			continue
-		}
-
-		log.Infof("Retweeted %d", tweet.Id)
-	}
 
 }
