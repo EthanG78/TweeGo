@@ -30,3 +30,5 @@ func StreamRetweet (stream *anaconda.Stream, api *anaconda.TwitterApi){
 		log.Infof("Retweeted %d", tweet.Id)
 	}
 }
+
+//TODO: Create test file for stream^^
