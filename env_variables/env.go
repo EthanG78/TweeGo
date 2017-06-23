@@ -1,4 +1,4 @@
-package logger
+package env_variables
 
 import "os"
 

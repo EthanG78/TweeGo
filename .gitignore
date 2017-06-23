@@ -150,4 +150,4 @@ $RECYCLE.BIN/
 *.lnk
 
 #Others
-twitter.env
+env_variables/twitter.env
