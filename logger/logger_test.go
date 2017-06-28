@@ -3,9 +3,12 @@ package logger_test
 import (
 	"testing"
 	"github.com/EthanG78/tweego/logger"
+	"github.com/sirupsen/logrus"
 )
 
-var log logger.Newlogger
+
+
+var log = &logger.Newlogger{Logger: logrus.New()}
 
 func TestNewlogger_Critical(t *testing.T) {
 	log.Critical("This is a test")

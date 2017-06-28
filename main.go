@@ -5,13 +5,14 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/EthanG78/tweego/logger"
 	"github.com/EthanG78/tweego/stream"
+	env "github.com/EthanG78/tweego/env_variables"
 )
 
 var(
-	consumerKey = logger.GetEnv("TWITTER_CONSUMER_KEY")
-	consumerSecret = logger.GetEnv("TWITTER_CONSUMER_SECRET")
-	accessToken = logger.GetEnv("TWITTER_ACCESS_TOKEN")
-	accessTokenSecret = logger.GetEnv("TWITTER_ACCESS_TOKEN_SECRET")
+	consumerKey = env.GetEnv("TWITTER_CONSUMER_KEY")
+	consumerSecret = env.GetEnv("TWITTER_CONSUMER_SECRET")
+	accessToken = env.GetEnv("TWITTER_ACCESS_TOKEN")
+	accessTokenSecret = env.GetEnv("TWITTER_ACCESS_TOKEN_SECRET")
 )
 
 
@@ -20,7 +21,8 @@ func main() {
 	anaconda.SetConsumerSecret(consumerSecret)
 	api := anaconda.NewTwitterApi(accessToken, accessTokenSecret)
 
-	log := &logger.Newlogger{logrus.New()}
+	var new_log = logrus.New()
+	log := &logger.Newlogger{Logger: new_log}
 	api.SetLogger(log)
 
 	s := stream.StreamFilter(api, "#trump")
