@@ -1,4 +1,4 @@
-package stream
+package actions
 
 import (
 	"github.com/ChimeraCoder/anaconda"
@@ -31,4 +31,6 @@ func StreamRetweet (stream *anaconda.Stream, api *anaconda.TwitterApi){
 	}
 }
 
-//TODO: Create test file for stream^^
+
+//ADD MORE ACTIONS
+

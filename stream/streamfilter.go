@@ -11,4 +11,3 @@ func StreamFilter (api *anaconda.TwitterApi, track string) (stream *anaconda.Str
 	})
 }
 
-//TODO: Create test file for stream^^

@@ -5,6 +5,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/EthanG78/tweego/logger"
 	"github.com/EthanG78/tweego/stream"
+	"github.com/EthanG78/tweego/actions"
 	env "github.com/EthanG78/tweego/env_variables"
 )
 
@@ -29,7 +30,7 @@ func main() {
 
 	defer s.Stop()
 
-	stream.StreamRetweet(s , api)
+	actions.StreamRetweet(s , api)
 
 
 }
