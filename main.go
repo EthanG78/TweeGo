@@ -14,6 +14,9 @@ var(
 	consumerSecret = env.GetEnv("TWITTER_CONSUMER_SECRET")
 	accessToken = env.GetEnv("TWITTER_ACCESS_TOKEN")
 	accessTokenSecret = env.GetEnv("TWITTER_ACCESS_TOKEN_SECRET")
+
+	//TEST
+
 )
 
 
