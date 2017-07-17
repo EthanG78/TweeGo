@@ -24,5 +24,3 @@ func (l *Newlogger) Noticef(format string, args ...interface{}){
 	l.Infof(format, args ...)
 }
 
-
-//TODO: Create test file for the logger^^
