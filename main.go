@@ -10,12 +10,18 @@ import (
 )
 
 var(
-	consumerKey = env.GetEnv("TWITTER_CONSUMER_KEY")
+	//This will be the final way to fetch tokens
+	/*consumerKey = env.GetEnv("TWITTER_CONSUMER_KEY")
 	consumerSecret = env.GetEnv("TWITTER_CONSUMER_SECRET")
 	accessToken = env.GetEnv("TWITTER_ACCESS_TOKEN")
-	accessTokenSecret = env.GetEnv("TWITTER_ACCESS_TOKEN_SECRET")
+	accessTokenSecret = env.GetEnv("TWITTER_ACCESS_TOKEN_SECRET")*/
 
-	//TEST
+
+	//Using this method of fetching tokens for quick testing without the need of creating new env variables
+	consumerKey = env.ConsumerKey
+	consumerSecret = env.ConsumerSecret
+	accessToken = env.AccessToken
+	accessTokenSecret = env.AccessTokenSecret
 
 )
 
