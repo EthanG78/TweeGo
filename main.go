@@ -7,6 +7,7 @@ import (
 	"github.com/EthanG78/tweego/stream"
 	"github.com/EthanG78/tweego/actions"
 	env "github.com/EthanG78/tweego/env_variables"
+	"net/url"
 )
 
 var(
@@ -39,7 +40,14 @@ func main() {
 
 	defer s.Stop()
 
-	actions.StreamRetweet(s , api)
+
+	//Testing different actions ->>
+
+	//actions.StreamRetweet(s , api)
+
+	v := url.Values{}
+	v.Set("url", "https://api.twitter.com/1.1/statuses/home_timeline.json")
+	actions.GetTimeline(api, v)
 
 
 }

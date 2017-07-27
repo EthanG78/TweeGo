@@ -32,9 +32,9 @@ func StreamRetweet (stream *anaconda.Stream, api *anaconda.TwitterApi){
 	}
 }
 
-func GetTimeline(api anaconda.TwitterApi, value url.Values){
+func GetTimeline(api *anaconda.TwitterApi, value url.Values){
 		log := &logger.Newlogger{logrus.New()}
-		tweets, err := anaconda.TwitterApi.GetHomeTimeline(api, value)
+		tweets, err := anaconda.TwitterApi.GetHomeTimeline(*api, value)
 		if err != nil{
 			log.Criticalf("Failed it retrieve timeline: %V", err)
 		}
