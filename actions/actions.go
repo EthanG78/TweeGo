@@ -7,13 +7,12 @@ import (
 	"net/url"
 )
 
-
-func StreamRetweet (stream *anaconda.Stream, api *anaconda.TwitterApi){
+func StreamRetweet(stream *anaconda.Stream, api *anaconda.TwitterApi) {
 	log := &logger.Newlogger{logrus.New()}
 
-	for v := range stream.C{
+	for v := range stream.C {
 		tweet, ok := v.(anaconda.Tweet)
-		if !ok{
+		if !ok {
 			log.Warningf("Received unexpected value of %T", v)
 			continue
 		}
@@ -23,8 +22,8 @@ func StreamRetweet (stream *anaconda.Stream, api *anaconda.TwitterApi){
 		}
 		_, err := api.Retweet(tweet.Id, false)
 
-		if err != nil{
-			log.Errorf("Could not retweet %d: %v",tweet.Id, err)
+		if err != nil {
+			log.Errorf("Could not retweet %d: %v", tweet.Id, err)
 			continue
 		}
 
@@ -32,17 +31,15 @@ func StreamRetweet (stream *anaconda.Stream, api *anaconda.TwitterApi){
 	}
 }
 
-func GetTimeline(api *anaconda.TwitterApi, value url.Values){
-		log := &logger.Newlogger{logrus.New()}
-		tweets, err := anaconda.TwitterApi.GetHomeTimeline(*api, value)
-		if err != nil{
-			log.Criticalf("Failed it retrieve timeline: %V", err)
-		}
+func GetTimeline(api *anaconda.TwitterApi, value url.Values) {
+	log := &logger.Newlogger{logrus.New()}
+	tweets, err := anaconda.TwitterApi.GetHomeTimeline(*api, value)
+	if err != nil {
+		log.Criticalf("Failed it retrieve timeline: %V", err)
+	}
 
-		log.Infof("Timeline %d", tweets)
+	log.Infof("Timeline %d", tweets)
 
 }
 
-
 //ADD MORE ACTIONS
-
